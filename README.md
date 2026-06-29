@@ -1,13 +1,9 @@
-# Python Utility for Logitech Litra Glow and Beam
+# Python Utility for Logitech Litra Glow and Beam via bluetooth
 [![PyPI version](https://badge.fury.io/py/litra-driver.svg?unused=0.8.0)](https://badge.fury.io/py/litra-driver)
 
 ## UPDATE
 
-I'm working on a port to Go.  Follow progress and try the initial version [here](https://github.com/kharyam/go-litra-driver).
-
-## Introduction
-
-After purchasing a [Logitech Litra Glow](https://www.logitech.com/en-us/products/lighting/litra-glow.946-000001.html) I was unable to find any support for linux. This project reverse-engineers the basic functionality of the litra glow so that we can control it via USB without using the physical buttons on the device. It also now supports the [Logitech Litra Beam](https://www.logitech.com/en-us/products/lighting/litra-beam.946-000006.html).
+This is a fork of litra-driver with bluetooth connection.
 
 ## Quick Start
 
@@ -51,6 +47,24 @@ The following dependencies may need to be installed for the UI. This was specifi
 ```bash
 sudo apt-get install -y python3-tk gir1.2-appindicator3-0.1
 ```
+
+#### Bluetooth
+
+Please connect to with device before litra-driver:
+
+```bash
+bluetoothctl scan on
+# Wait a bit
+bluetoothctl scan off
+# Capture Mac address of Litra Beam
+
+BT_MAC=00:11:22:33:44:55  # set it here
+
+bluetoothctl pair $BT_MAC
+bluetoothctl trust $BT_MAC
+bluetoothctl connect $BT_MAC
+```
+
 
 ## The UI
 A basic UI can be launched to allow control of the light:
